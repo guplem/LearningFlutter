@@ -28,7 +28,9 @@ class MyApp extends StatelessWidget {
             ),
             ElevatedButton( //Previously (deprecated) was RaisedButton
               child: Text("Answer 4"),
-              onPressed: answerQuestion, //Be aware, do not pass the result of the function ("answerQuestion()") but the pointer to the function ("answerQuestion")
+              onPressed: () {
+                print("Executing a function that can only be executed from the button and nowhere else. This is called an 'anonymous function.'");
+              },
             ),
           ],
         ),
