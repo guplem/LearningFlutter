@@ -2,7 +2,16 @@ import "package:flutter/material.dart";
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return new MyAppState();
+  }
+
+}
+
+class MyAppState extends State<MyApp> {
 
   var questionIndex = 0;
   var questions = [
@@ -11,10 +20,12 @@ class MyApp extends StatelessWidget {
   ];
 
   void answerQuestion(){
+    setState(() {
+      questionIndex++;
+      if (questionIndex >= questions.length)
+        questionIndex = 0;
+    });
     print ("Answer chosen!");
-    questionIndex++;
-    if (questionIndex >= questions.length)
-      questionIndex = 0;
     print ("New question: " + questions.elementAt(questionIndex));
   }
 
