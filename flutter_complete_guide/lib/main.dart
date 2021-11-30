@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 
+import "./question.dart";
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -38,7 +40,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text("Question: " + _questions.elementAt(_questionIndex)),
+            Question(_questions[_questionIndex]),
             ElevatedButton( //Previously (deprecated) was RaisedButton
               child: Text("Answer 1"),
               onPressed: _answerQuestion, //Be aware, do not pass the result of the function ("answerQuestion()") but the pointer to the function ("answerQuestion")
