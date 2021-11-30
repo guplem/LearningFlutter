@@ -4,8 +4,18 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
+  var questionIndex = 0;
+  var questions = [
+    "What's your favourite color?",
+    "What's your favourite animal?",
+  ];
+
   void answerQuestion(){
     print ("Answer chosen!");
+    questionIndex++;
+    if (questionIndex >= questions.length)
+      questionIndex = 0;
+    print ("New question: " + questions.elementAt(questionIndex));
   }
 
   @override
@@ -17,7 +27,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text("Question:"),
+            Text("Question: " + questions.elementAt(questionIndex)),
             ElevatedButton( //Previously (deprecated) was RaisedButton
               child: Text("Answer 1"),
               onPressed: answerQuestion, //Be aware, do not pass the result of the function ("answerQuestion()") but the pointer to the function ("answerQuestion")
