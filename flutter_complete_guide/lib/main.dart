@@ -6,27 +6,27 @@ class MyApp extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return new MyAppState();
+    return new _MyAppState();
   }
 
 }
 
-class MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> {
 
-  var questionIndex = 0;
-  var questions = [
+  var _questionIndex = 0;
+  final _questions = [
     "What's your favourite color?",
     "What's your favourite animal?",
   ];
 
-  void answerQuestion(){
+  void _answerQuestion(){
     setState(() {
-      questionIndex++;
-      if (questionIndex >= questions.length)
-        questionIndex = 0;
+      _questionIndex++;
+      if (_questionIndex >= _questions.length)
+        _questionIndex = 0;
     });
     print ("Answer chosen!");
-    print ("New question: " + questions.elementAt(questionIndex));
+    print ("New question: " + _questions.elementAt(_questionIndex));
   }
 
   @override
@@ -38,14 +38,14 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text("Question: " + questions.elementAt(questionIndex)),
+            Text("Question: " + _questions.elementAt(_questionIndex)),
             ElevatedButton( //Previously (deprecated) was RaisedButton
               child: Text("Answer 1"),
-              onPressed: answerQuestion, //Be aware, do not pass the result of the function ("answerQuestion()") but the pointer to the function ("answerQuestion")
+              onPressed: _answerQuestion, //Be aware, do not pass the result of the function ("answerQuestion()") but the pointer to the function ("answerQuestion")
             ),
             ElevatedButton( //Previously (deprecated) was RaisedButton
               child: Text("Answer 2"),
-              onPressed: answerQuestion, //Be aware, do not pass the result of the function ("answerQuestion()") but the pointer to the function ("answerQuestion")
+              onPressed: _answerQuestion, //Be aware, do not pass the result of the function ("answerQuestion()") but the pointer to the function ("answerQuestion")
             ),
             ElevatedButton( //Previously (deprecated) was RaisedButton
               child: Text("Answer 4"),
