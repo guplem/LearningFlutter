@@ -18,8 +18,16 @@ class _MyAppState extends State<MyApp> {
 
   var _questionIndex = 0;
   final _questions = [
-    "What's your favourite color?",
-    "What's your favourite animal?",
+    // List of Maps
+    {
+      // This is a Map<String, Object> (it can be any type)
+      "questionText": "What's your favourite color?",
+      "answers": ["Black", "Red", "Green", "White"]
+    },
+    {
+      "questionText": "What's your favourite pet?",
+      "answers": ["Dog", "Cat", "Hedgehog"]
+    },
   ];
 
   void _answerQuestion(){
@@ -29,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         _questionIndex = 0;
     });
     print ("Answer chosen!");
-    print ("New question: " + _questions.elementAt(_questionIndex));
+    print("New question: " + _questions.elementAt(_questionIndex)["questionText"].toString());
   }
 
   @override
@@ -41,10 +49,13 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Question(_questions[_questionIndex]),
-            Answer(_answerQuestion), // We pass the pointer to the function
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+            Question(_questions[_questionIndex]["questionText"].toString()),
+            // The "..." takes the values of the list and puts them in the parent list (instead of putting a list in the "children" list).
+            ...(_questions[_questionIndex]["answers"] as List<String>).map(// "map" calls a method for each element in the list.
+                (answer) {
+              // The method has as parameter the element of the list
+              return Answer(_answerQuestion, answer);
+            }).toList()
           ],
         ),
       ),

@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 class Answer extends StatelessWidget {
 
   final VoidCallback callback;
+  final String answerText;
 
-  Answer(this.callback);
+  Answer(this.callback, this.answerText);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class Answer extends StatelessWidget {
             foregroundColor: MaterialStateProperty.all(Colors.white), // Text
           ),
           onPressed: callback,
-          child: Text("Answer 1"),
+          child: Text(answerText),
         ));
   }
 }
