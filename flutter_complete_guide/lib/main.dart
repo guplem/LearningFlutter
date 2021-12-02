@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import "./question.dart";
+import "./answer.dart";
 
 void main() => runApp(MyApp());
 
@@ -41,20 +42,9 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: [
             Question(_questions[_questionIndex]),
-            ElevatedButton( //Previously (deprecated) was RaisedButton
-              child: Text("Answer 1"),
-              onPressed: _answerQuestion, //Be aware, do not pass the result of the function ("answerQuestion()") but the pointer to the function ("answerQuestion")
-            ),
-            ElevatedButton( //Previously (deprecated) was RaisedButton
-              child: Text("Answer 2"),
-              onPressed: _answerQuestion, //Be aware, do not pass the result of the function ("answerQuestion()") but the pointer to the function ("answerQuestion")
-            ),
-            ElevatedButton( //Previously (deprecated) was RaisedButton
-              child: Text("Answer 4"),
-              onPressed: () {
-                print("Executing a function that can only be executed from the button and nowhere else. This is called an 'anonymous function.'");
-              },
-            ),
+            Answer(_answerQuestion), // We pass the pointer to the function
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
           ],
         ),
       ),
