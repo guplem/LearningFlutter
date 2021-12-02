@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   var _questionIndex = 0;
-  final _questions = [
+  static const _questions = [
     // List of Maps
     {
       // This is a Map<String, Object> (it can be any type)
