@@ -39,7 +39,6 @@ class _MyAppState extends State<MyApp> {
   var _totalScore = 0;
 
   void _answerQuestion(int score) {
-
     _totalScore = _totalScore + score;
 
     setState(() {
@@ -66,7 +65,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: (_questionIndex < _questions.length) // You can use boolean expressions during the widgets construction
             ? Quiz(answerQuestion: _answerQuestion, questions: _questions, questionIndex: _questionIndex)
-            : Result(),
+            : Result(resultScore: _totalScore),
       ),
     );
   }
