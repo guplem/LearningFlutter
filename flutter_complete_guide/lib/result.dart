@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
   final int resultScore;
+  final Function() resetFunction;
 
-  Result({required this.resultScore});
+  Result({required this.resultScore, required this.resetFunction});
 
   String get resultPhrase {
     String resultText = "You did it!";
@@ -24,13 +25,19 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        resultPhrase,
-        style: const TextStyle(
-          fontSize: 36,
-          fontWeight: FontWeight.bold,
-        ),
-        textAlign: TextAlign.center,
+      child: Column(
+        children: [
+          Text(
+            resultPhrase,
+            style: const TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Spacer(), // ATTENTION! Added custom, not in the course
+          TextButton(onPressed: resetFunction, child: const Text("Restart Quiz"),)
+        ],
       ),
     );
   }

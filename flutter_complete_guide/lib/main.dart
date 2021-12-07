@@ -56,6 +56,14 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  void _resetQuiz(){
+    setState(() {
+      // When this is updated, the app is "rebuilt"
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -65,7 +73,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: (_questionIndex < _questions.length) // You can use boolean expressions during the widgets construction
             ? Quiz(answerQuestion: _answerQuestion, questions: _questions, questionIndex: _questionIndex)
-            : Result(resultScore: _totalScore),
+            : Result(resultScore: _totalScore, resetFunction: _resetQuiz),
       ),
     );
   }
