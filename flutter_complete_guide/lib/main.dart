@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
+import 'package:flutter_complete_guide/quiz.dart';
 
-import "./question.dart";
-import "./answer.dart";
+import "./quiz.dart";
+import "./result.dart";
 
 void main() => runApp(MyApp());
 
@@ -50,20 +51,8 @@ class _MyAppState extends State<MyApp> {
           title: const Text("Hello World!"),
         ),
         body: (_questionIndex < _questions.length) // You can use boolean expressions during the widgets construction
-            ? Column(
-                children: [
-                  Question(_questions[_questionIndex]["questionText"] as String), // To avoid Null Safety issues
-                  // The "..." takes the values of the list and puts them in the parent list (instead of putting a list in the "children" list).
-                  ...(_questions[_questionIndex]["answers"] as List<String>).map(// "map" calls a method for each element in the list.
-                      (answer) {
-                    // The method has as parameter the element of the list
-                    return Answer(_answerQuestion, answer);
-                  }).toList()
-                ],
-              )
-            : const Center(
-                child: Text("You did it!"),
-              ),
+            ? Quiz(answerQuestion: _answerQuestion, questions: _questions, questionIndex: _questionIndex)
+            : Result(),
       ),
     );
   }
