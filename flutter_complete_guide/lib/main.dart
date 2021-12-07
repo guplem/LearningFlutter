@@ -20,16 +20,30 @@ class _MyAppState extends State<MyApp> {
     {
       // This is a Map<String, Object> (it can be any type)
       "questionText": "What's your favourite color?",
-      "answers": ["Black", "Red", "Green", "White"]
+      "answers": [
+        {"Text": "Black", "Score": 10},
+        {"Text": "Red", "Score": 5},
+        {"Text": "Green", "Score": 3},
+        {"Text": "White", "Score": 1}
+      ]
     },
     {
       "questionText": "What's your favourite pet?",
-      "answers": ["Dog", "Cat", "Hedgehog"]
+      "answers": [
+        {"Text": "Dog", "Score": 6},
+        {"Text": "Cat", "Score": 1},
+        {"Text": "Hedgehog", "Score": 10}
+      ]
     },
   ];
+  var _totalScore = 0;
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+
+    _totalScore = _totalScore + score;
+
     setState(() {
+      // When this is updated, the app is "rebuilt"
       _questionIndex++;
     });
 
