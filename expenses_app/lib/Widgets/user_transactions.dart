@@ -25,9 +25,18 @@ class _UserTransactionsState extends State<UserTransactions> {
           child: Text("CHART"),
           elevation: 5 /*shadow*/,
         ),
-        NewTransaction(),
+        NewTransaction(_addNewTransaction),
         TransacionList(transactions),
       ],
     );
   }
+
+  void _addNewTransaction(String title, double amount) {
+    final newTransaction = Transaction(id: DateTime.now().toString(), title: title, amount: amount, date: DateTime.now());
+
+    setState(() {
+      transactions.add(newTransaction);
+    });
+  }
+  
 }

@@ -4,6 +4,9 @@ class NewTransaction extends StatelessWidget {
 
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+  Function(String title, double amount) addNewTransactionFunction;
+
+  NewTransaction(this.addNewTransactionFunction);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,9 @@ class NewTransaction extends StatelessWidget {
           children: [
             TextField(decoration: const InputDecoration(labelText: "Title"), controller: titleController,),
             TextField(decoration: const InputDecoration(labelText: "Amount"), controller: amountController,),
-            TextButton(onPressed: (){}, child: const Text("Add Transaction"))
+            TextButton(onPressed: () {
+              addNewTransactionFunction(titleController.text, double.parse(amountController.text));
+            }, child: const Text("Add Transaction"))
           ],
         ),
       ),
