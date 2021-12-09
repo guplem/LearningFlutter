@@ -13,12 +13,20 @@ class _UserTransactionsState extends State<UserTransactions> {
   final List<Transaction> transactions = [
     Transaction(id: "t1", title: "New Shoes", amount: 39.99, date: DateTime.now()),
     Transaction(id: "t2", title: "Poke Bowl", amount: 17.54, date: (DateTime.now())),
+    Transaction(id: "t2", title: "AAAA", amount: 17.54, date: (DateTime.now())),
+    Transaction(id: "t2", title: "BBBB", amount: 17.54, date: (DateTime.now())),
+    Transaction(id: "t2", title: "CCCC", amount: 17.54, date: (DateTime.now())),
+    Transaction(id: "t2", title: "DDDD", amount: 17.54, date: (DateTime.now())),
+    Transaction(id: "t2", title: "EEEE", amount: 17.54, date: (DateTime.now())),
+    Transaction(id: "t2", title: "FFFF", amount: 17.54, date: (DateTime.now())),
+    Transaction(id: "t2", title: "GGGG", amount: 17.54, date: (DateTime.now())),
+    Transaction(id: "t2", title: "HHHH", amount: 17.54, date: (DateTime.now())),
+    Transaction(id: "t2", title: "IIII", amount: 17.54, date: (DateTime.now())),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           const Card(
@@ -29,7 +37,6 @@ class _UserTransactionsState extends State<UserTransactions> {
           NewTransaction(_addNewTransaction),
           TransacionList(transactions),
         ],
-      ),
     );
   }
 
