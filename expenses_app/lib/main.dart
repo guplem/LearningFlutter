@@ -65,11 +65,27 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          //////////////////////////////////////////// CHART
           const Card(
             color: Colors.cyan,
             child: Text("CHART"),
             elevation: 5 /*shadow*/,
           ),
+          //////////////////////////////////////////// INPUT
+          Card(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextField(decoration: InputDecoration(labelText: "Title"),),
+                  TextField(decoration: InputDecoration(labelText: "Amount"),),
+                  TextButton(onPressed: (){}, child: Text("Add Transaction"))
+                ],
+              ),
+            ),
+          ),
+          //////////////////////////////////////////// EXPENSES
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: transactions.map<Widget>((tx) {
