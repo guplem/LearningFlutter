@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import "./transaction.dart";
 
@@ -103,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          tx.date.toString(),
+                          DateFormat("dd MMMM yyyy, HH:mm").format(tx.date), //DateFormat.yMMMMd("en_US").format(tx.date), // Another option
                           style: TextStyle(color: Colors.black45),
                         ),
                       ],
