@@ -17,17 +17,19 @@ class _UserTransactionsState extends State<UserTransactions> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        const Card(
-          color: Colors.cyan,
-          child: Text("CHART"),
-          elevation: 5 /*shadow*/,
-        ),
-        NewTransaction(_addNewTransaction),
-        TransacionList(transactions),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          const Card(
+            color: Colors.cyan,
+            child: Text("CHART"),
+            elevation: 5 /*shadow*/,
+          ),
+          NewTransaction(_addNewTransaction),
+          TransacionList(transactions),
+        ],
+      ),
     );
   }
 
