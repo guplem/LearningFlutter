@@ -1,0 +1,33 @@
+import 'package:expenses_app/Models/transaction.dart';
+import 'package:expenses_app/Widgets/new_transaction.dart';
+import 'package:expenses_app/Widgets/transaction_list.dart';
+import 'package:flutter/material.dart';
+
+class UserTransactions extends StatefulWidget {
+  @override
+  _UserTransactionsState createState() => _UserTransactionsState();
+}
+
+class _UserTransactionsState extends State<UserTransactions> {
+
+  final List<Transaction> transactions = [
+    Transaction(id: "t1", title: "New Shoes", amount: 39.99, date: DateTime.now()),
+    Transaction(id: "t2", title: "Poke Bowl", amount: 17.54, date: (DateTime.now())),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        const Card(
+          color: Colors.cyan,
+          child: Text("CHART"),
+          elevation: 5 /*shadow*/,
+        ),
+        NewTransaction(),
+        TransacionList(transactions),
+      ],
+    );
+  }
+}
