@@ -37,8 +37,8 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-  String? titleInput;
-  String? amountInput;
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController amountController = TextEditingController();
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -80,8 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  TextField(decoration: InputDecoration(labelText: "Title"),onChanged: (val) {widget.titleInput = val;},),
-                  TextField(decoration: InputDecoration(labelText: "Amount"),onChanged: (val) {widget.amountInput = val;},),
+                  TextField(decoration: InputDecoration(labelText: "Title"), controller: widget.titleController,),
+                  TextField(decoration: InputDecoration(labelText: "Amount"), controller: widget.amountController,),
                   TextButton(onPressed: (){}, child: Text("Add Transaction"))
                 ],
               ),
