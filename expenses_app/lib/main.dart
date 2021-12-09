@@ -42,7 +42,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   final List<Transaction> transactions = [
     Transaction(id: "t1", title: "New Shoes", amount: 39.99, date: DateTime.now()),
     Transaction(id: "t2", title: "Poke Bowl", amount: 17.54, date: (DateTime.now())),
@@ -73,7 +72,23 @@ class _MyHomePageState extends State<MyHomePage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: transactions.map<Widget>((tx) {
-              return Card(child: Text(tx.title));
+              return Card(
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        tx.amount.toString(),
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Text(tx.title),
+                        Text(tx.date.toString()),
+                      ],
+                    ),
+                  ],
+                ),
+              );
             }).toList(),
           )
         ],
