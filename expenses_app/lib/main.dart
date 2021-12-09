@@ -12,8 +12,11 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Simple Transactions App"),
+          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.add))],
         ),
         body: UserTransactions(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(onPressed: () {}, child: Icon(Icons.add)),
       ),
     );
   }
