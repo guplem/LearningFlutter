@@ -23,17 +23,17 @@ class _NewTransactionState extends State<NewTransaction> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             TextField(
-              decoration: const InputDecoration(labelText: "Title"),
+              decoration: InputDecoration(labelText: "Title"),
               controller: titleController,
               onSubmitted: (_) => SubmitData(),
             ),
             TextField(
-              decoration: const InputDecoration(labelText: "Amount"),
+              decoration: InputDecoration(labelText: "Amount"),
               controller: amountController,
               keyboardType: TextInputType.number,
               onSubmitted: (_) => SubmitData(),
             ),
-            TextButton(onPressed: SubmitData, child: const Text("Add Transaction"))
+            TextButton(onPressed: SubmitData, child: Text("Add Transaction"))
           ],
         ),
       ),

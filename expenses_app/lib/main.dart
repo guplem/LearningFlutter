@@ -11,7 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Personal Expenses',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green).copyWith(secondary: Colors.brown),
+      ),
       home: MyHomePage(),
     );
   }
@@ -25,7 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   final List<Transaction> transactions = [
     Transaction(id: "t1", title: "New Shoes", amount: 39.99, date: DateTime.now()),
     Transaction(id: "t2", title: "Poke Bowl", amount: 17.54, date: (DateTime.now())),
@@ -42,31 +44,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // To create a floating window with a widget
   void StartAddNewTransaction(BuildContext context) {
-    showModalBottomSheet(context: context, builder: (builderContext) {
-      return NewTransaction(_addNewTransaction);
-    } );
+    showModalBottomSheet(
+        context: context,
+        builder: (builderContext) {
+          return NewTransaction(_addNewTransaction);
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Simple Transactions App"),
-          actions: [IconButton(onPressed: () => StartAddNewTransaction(context), icon: Icon(Icons.add))],
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            const Card(
-              color: Colors.cyan,
-              child: Text("CHART"),
-              elevation: 5 /*shadow*/,
-            ),
-            TransacionList(transactions),
-          ],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton(onPressed: () => StartAddNewTransaction(context), child: Icon(Icons.add)),
+      appBar: AppBar(
+        title: const Text("Simple Transactions App"),
+        actions: [IconButton(onPressed: () => StartAddNewTransaction(context), icon: Icon(Icons.add))],
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Card(
+            child: Center(child: Text("CHART")),
+            elevation: 5 /*shadow*/,
+          ),
+          TransacionList(transactions),
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(onPressed: () => StartAddNewTransaction(context), child: Icon(Icons.add)),
     );
   }
 
