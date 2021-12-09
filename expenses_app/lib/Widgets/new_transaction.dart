@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+class NewTransaction extends StatefulWidget {
   Function(String title, double amount) addNewTransactionFunction;
 
   NewTransaction(this.addNewTransactionFunction);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +48,9 @@ class NewTransaction extends StatelessWidget {
       return;
     }
 
-    addNewTransactionFunction(enteredText, enteredAmount);
+    widget.addNewTransactionFunction(enteredText, enteredAmount);
+
+    // So the NewTransaction widget screen is closed automatically
+    Navigator.pop(context);
   }
 }

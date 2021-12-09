@@ -62,7 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text("CHART"),
               elevation: 5 /*shadow*/,
             ),
-            NewTransaction(_addNewTransaction),
             TransacionList(transactions),
           ],
         ),
