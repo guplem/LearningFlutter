@@ -5,9 +5,9 @@ class ChartBar extends StatelessWidget {
   late final double spendingAmount;
   late final double spendingPctOfTotal;
 
-  ChartBar({required this.label, required this.spendingAmount, required double totalSpending}){
+  ChartBar({required this.label, required this.spendingAmount, required double totalSpending}) {
     if (totalSpending > 0) {
-      spendingPctOfTotal = spendingAmount/totalSpending;
+      spendingPctOfTotal = spendingAmount / totalSpending;
     } else {
       spendingPctOfTotal = 0;
     }
@@ -17,7 +17,9 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("\$${spendingAmount.toStringAsFixed(0)}"),
+        FittedBox( // Makes the child shrink instead of breaking lines
+          child: Text("\$${spendingAmount.toStringAsFixed(0)}"),
+        ),
         const SizedBox(
           height: 4,
         ),

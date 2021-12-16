@@ -39,11 +39,18 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Row(
-        children: groupedTransactionValues.map((data) {
-          return ChartBar(
-            label: data['day'] as String, spendingAmount: data['amount'] as double, totalSpending: totalSpending); //Text("{$data['day']}: ${data['amount']}");
-        }).toList(),
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactionValues.map((data) {
+            return Flexible(
+              fit: FlexFit.tight, // child can not 'grow'
+              child: ChartBar(
+                label: data['day'] as String, spendingAmount: data['amount'] as double, totalSpending: totalSpending),
+            ); //Text("{$data['day']}: ${data['amount']}");
+          }).toList(),
+        ),
       ),
     );
   }
