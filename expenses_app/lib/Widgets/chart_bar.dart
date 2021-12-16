@@ -17,8 +17,11 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FittedBox( // Makes the child shrink instead of breaking lines
-          child: Text("\$${spendingAmount.toStringAsFixed(0)}"),
+        Container( // So the text shrinks but the vertical space is not reduced
+          height: 20,
+          child: FittedBox( // Makes the child shrink instead of breaking lines
+            child: Text("\$${spendingAmount.toStringAsFixed(0)}"),
+          ),
         ),
         const SizedBox(
           height: 4,
