@@ -45,17 +45,17 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> transactions = [
-    Transaction(id: "t1", title: "New Shoes", amount: 39.99, date: DateTime.now()),
-    Transaction(id: "t2", title: "Poke Bowl", amount: 17.54, date: (DateTime.now())),
-    Transaction(id: "t2", title: "AAAA", amount: 10, date: (DateTime.now())),
-    Transaction(id: "t2", title: "BBBB", amount: 24, date: (DateTime.now())),
-    Transaction(id: "t2", title: "CCCC", amount: 9.99954, date: (DateTime.now())),
-    Transaction(id: "t2", title: "DDDD", amount: 17.5441, date: (DateTime.now())),
-    Transaction(id: "t2", title: "EEEE", amount: 17.5469, date: (DateTime.now())),
-    Transaction(id: "t2", title: "FFFF", amount: 17.54, date: (DateTime.now())),
-    Transaction(id: "t2", title: "GGGG", amount: 17.54, date: (DateTime.now())),
-    Transaction(id: "t2", title: "HHHH", amount: 17.54, date: (DateTime.now())),
-    Transaction(id: "t2", title: "IIII", amount: 17.54, date: (DateTime.now())),
+    //Transaction(id: "t1", title: "New Shoes", amount: 39.99, date: DateTime.now()),
+    //Transaction(id: "t2", title: "Poke Bowl", amount: 17.54, date: (DateTime.now())),
+    //Transaction(id: "t2", title: "AAAA", amount: 10, date: (DateTime.now())),
+    //Transaction(id: "t2", title: "BBBB", amount: 24, date: (DateTime.now())),
+    //Transaction(id: "t2", title: "CCCC", amount: 9.99954, date: (DateTime.now())),
+    //Transaction(id: "t2", title: "DDDD", amount: 17.5441, date: (DateTime.now())),
+    //Transaction(id: "t2", title: "EEEE", amount: 17.5469, date: (DateTime.now())),
+    //Transaction(id: "t2", title: "FFFF", amount: 17.54, date: (DateTime.now())),
+    //Transaction(id: "t2", title: "GGGG", amount: 17.54, date: (DateTime.now())),
+    //Transaction(id: "t2", title: "HHHH", amount: 17.54, date: (DateTime.now())),
+    //Transaction(id: "t2", title: "IIII", amount: 17.54, date: (DateTime.now())),
   ];
 
   // To create a floating window with a widget
