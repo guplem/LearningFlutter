@@ -15,8 +15,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green).copyWith(secondary: Colors.brown),
         fontFamily: "Quicksand", // General text
+        textTheme: const TextTheme(
+          headline6: TextStyle( // Style for headline 6 (old Title): https://stackoverflow.com/a/60864190/7927429
+            fontFamily: "OpenSans",
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
         appBarTheme: const AppBarTheme(
-          titleTextStyle: TextStyle( // Title text in app bar
+          titleTextStyle: TextStyle(
+            // Title text in app bar
             fontFamily: "OpenSans",
             fontSize: 20,
             fontWeight: FontWeight.bold,
