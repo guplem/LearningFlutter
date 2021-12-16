@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import "package:intl/intl.dart";
 
 class NewTransaction extends StatefulWidget {
-  Function(String title, double amount) addNewTransactionFunction;
+  Function(String title, double amount, DateTime date) addNewTransactionFunction;
 
   NewTransaction(this.addNewTransactionFunction);
 
@@ -10,9 +11,28 @@ class NewTransaction extends StatefulWidget {
 }
 
 class _NewTransactionState extends State<NewTransaction> {
-  final titleController = TextEditingController();
+  final _titleController = TextEditingController();
+  final _amountController = TextEditingController();
+  DateTime? _selectedDate;
 
-  final amountController = TextEditingController();
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime.now(),
+
+    ).then((pickedDate){
+
+      if (pickedDate == null)
+        return;
+
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +44,12 @@ class _NewTransactionState extends State<NewTransaction> {
           children: [
             TextField(
               decoration: InputDecoration(labelText: "Title"),
-              controller: titleController,
+              controller: _titleController,
               onSubmitted: (_) => _SubmitData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: "Amount"),
-              controller: amountController,
+              controller: _amountController,
               keyboardType: TextInputType.number,
               onSubmitted: (_) => _SubmitData(),
             ),
@@ -37,10 +57,12 @@ class _NewTransactionState extends State<NewTransaction> {
               height: 70,
               child: Row(
                 children: [
-                  Text("No Date Chosen"),
+                  Expanded(child: Text(_selectedDate == null? "No Date Chosen" : "Picked Date:" + DateFormat.yMd().format(_selectedDate!) )),
                   TextButton(
-                    onPressed: () {},
-                    child: const Text("ChooseDate",),
+                    onPressed: _presentDatePicker,
+                    child: const Text(
+                      "ChooseDate",
+                    ),
                   )
                 ],
               ),
@@ -53,14 +75,14 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   _SubmitData() {
-    String enteredText = titleController.text;
-    double enteredAmount = double.parse(amountController.text);
+    String enteredText = _titleController.text;
+    double enteredAmount = double.parse(_amountController.text);
 
-    if (enteredText.isEmpty || enteredAmount <= 0) {
+    if (enteredText.isEmpty || enteredAmount <= 0 || _selectedDate == null) {
       return;
     }
 
-    widget.addNewTransactionFunction(enteredText, enteredAmount);
+    widget.addNewTransactionFunction(enteredText, enteredAmount, _selectedDate!);
 
     // So the NewTransaction widget screen is closed automatically
     Navigator.pop(context);
