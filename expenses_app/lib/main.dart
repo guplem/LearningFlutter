@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'Models/transaction.dart';
 import 'Widgets/transaction_list.dart';
+import "Widgets/chart.dart";
 
 void main() => runApp(MyApp());
 
@@ -45,18 +46,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> transactions = [
-    //Transaction(id: "t1", title: "New Shoes", amount: 39.99, date: DateTime.now()),
-    //Transaction(id: "t2", title: "Poke Bowl", amount: 17.54, date: (DateTime.now())),
-    //Transaction(id: "t2", title: "AAAA", amount: 10, date: (DateTime.now())),
-    //Transaction(id: "t2", title: "BBBB", amount: 24, date: (DateTime.now())),
-    //Transaction(id: "t2", title: "CCCC", amount: 9.99954, date: (DateTime.now())),
-    //Transaction(id: "t2", title: "DDDD", amount: 17.5441, date: (DateTime.now())),
-    //Transaction(id: "t2", title: "EEEE", amount: 17.5469, date: (DateTime.now())),
-    //Transaction(id: "t2", title: "FFFF", amount: 17.54, date: (DateTime.now())),
-    //Transaction(id: "t2", title: "GGGG", amount: 17.54, date: (DateTime.now())),
-    //Transaction(id: "t2", title: "HHHH", amount: 17.54, date: (DateTime.now())),
-    //Transaction(id: "t2", title: "IIII", amount: 17.54, date: (DateTime.now())),
+    Transaction(id: "t1", title: "New Shoes", amount: 39.99, date: (DateTime.now().subtract(Duration(days: 0)))),
+    Transaction(id: "t2", title: "Poke Bowl", amount: 17.54, date: (DateTime.now().subtract(Duration(days: 1)))),
+    Transaction(id: "t2", title: "AAAA", amount: 10, date: (DateTime.now().subtract(Duration(days: 2)))),
+    Transaction(id: "t2", title: "BBBB", amount: 24, date: (DateTime.now().subtract(Duration(days: 3)))),
+    Transaction(id: "t2", title: "CCCC", amount: 9.99954, date: (DateTime.now().subtract(Duration(days: 4)))),
+    Transaction(id: "t2", title: "DDDD", amount: 17.5441, date: (DateTime.now().subtract(Duration(days: 5)))),
+    Transaction(id: "t2", title: "EEEE", amount: 17.5469, date: (DateTime.now().subtract(Duration(days: 6)))),
+    Transaction(id: "t2", title: "FFFF", amount: 17.54, date: (DateTime.now().subtract(Duration(days: 7)))),
+    Transaction(id: "t2", title: "GGGG", amount: 17.54, date: (DateTime.now().subtract(Duration(days: 8)))),
+    Transaction(id: "t2", title: "HHHH", amount: 17.54, date: (DateTime.now().subtract(Duration(days: 2)))),
+    Transaction(id: "t2", title: "IIII", amount: 17.54, date: (DateTime.now().subtract(Duration(days: 1)))),
   ];
+
+  List<Transaction> get recentTransactions{
+    return transactions.where((element) => element.date.isAfter(DateTime.now().subtract(Duration(days: 7)))).toList();
+  }
 
   // To create a floating window with a widget
   void StartAddNewTransaction(BuildContext context) {
@@ -77,10 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Card(
-            child: Center(child: Text("CHART")),
-            elevation: 5 /*shadow*/,
-          ),
+          Chart(recentTransactions),
           TransacionList(transactions),
         ],
       ),
