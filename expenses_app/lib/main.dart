@@ -17,12 +17,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green).copyWith(secondary: Colors.brown),
         fontFamily: "Quicksand", // General text
         textTheme: const TextTheme(
-          headline6: TextStyle( // Style for headline 6 (old Title): https://stackoverflow.com/a/60864190/7927429
-            fontFamily: "OpenSans",
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
+            headline6: TextStyle(
+              // Style for headline 6 (old Title): https://stackoverflow.com/a/60864190/7927429
+              fontFamily: "OpenSans",
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+            button: TextStyle(fontWeight: FontWeight.bold)),
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             // Title text in app bar
@@ -59,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Transaction(id: "t2", title: "IIII", amount: 17.54, date: (DateTime.now().subtract(Duration(days: 1)))),
   ];
 
-  List<Transaction> get recentTransactions{
+  List<Transaction> get recentTransactions {
     return transactions.where((element) => element.date.isAfter(DateTime.now().subtract(Duration(days: 7)))).toList();
   }
 

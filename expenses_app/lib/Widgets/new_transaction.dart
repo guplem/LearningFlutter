@@ -25,26 +25,38 @@ class _NewTransactionState extends State<NewTransaction> {
             TextField(
               decoration: InputDecoration(labelText: "Title"),
               controller: titleController,
-              onSubmitted: (_) => SubmitData(),
+              onSubmitted: (_) => _SubmitData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: "Amount"),
               controller: amountController,
               keyboardType: TextInputType.number,
-              onSubmitted: (_) => SubmitData(),
+              onSubmitted: (_) => _SubmitData(),
             ),
-            TextButton(onPressed: SubmitData, child: Text("Add Transaction"))
+            Container(
+              height: 70,
+              child: Row(
+                children: [
+                  Text("No Date Chosen"),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text("ChooseDate",),
+                  )
+                ],
+              ),
+            ),
+            ElevatedButton(onPressed: _SubmitData, child: Text("Add Transaction"))
           ],
         ),
       ),
     );
   }
 
-  SubmitData() {
+  _SubmitData() {
     String enteredText = titleController.text;
     double enteredAmount = double.parse(amountController.text);
 
-    if (enteredText.isEmpty || enteredAmount <= 0){
+    if (enteredText.isEmpty || enteredAmount <= 0) {
       return;
     }
 
