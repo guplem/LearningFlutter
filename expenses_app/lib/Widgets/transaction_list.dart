@@ -12,8 +12,7 @@ class TransacionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 450,
-      // ListView needs to be in a widget that defines the height (like the container)
+      // ListView MUST be in a widget that defines the height (like the container)
       child: transactions.isEmpty
           ? Column(children: [
               SizedBox(height: 20,), // Empty space
