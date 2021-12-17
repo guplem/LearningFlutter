@@ -75,12 +75,14 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   _SubmitData() {
-    String enteredText = _titleController.text;
-    double enteredAmount = double.parse(_amountController.text);
 
-    if (enteredText.isEmpty || enteredAmount <= 0 || _selectedDate == null) {
+
+    if (_amountController.text.isEmpty || _titleController.text.isEmpty || double.parse(_amountController.text) <= 0 || _selectedDate == null) {
       return;
     }
+
+    String enteredText = _titleController.text;
+    double enteredAmount = double.parse(_amountController.text);
 
     widget.addNewTransactionFunction(enteredText, enteredAmount, _selectedDate!);
 
