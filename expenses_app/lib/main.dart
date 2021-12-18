@@ -98,34 +98,36 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return CupertinoPageScaffold(
       navigationBar: appBar as ObstructingPreferredSizeWidget,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          if (isLandscape)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Show Chart"),
-                Switch.adaptive(
-                    value: _showChart,
-                    onChanged: (newVal) {
-                      setState(() {
-                        _showChart = newVal;
-                      });
-                    }),
-              ],
-            ),
-          if (_showChart || !isLandscape)
-            Container(
-              child: Chart(recentTransactions),
-              height: (_mediaQuery.size.height - appBar.preferredSize.height - _mediaQuery.padding.top) * (isLandscape ? 0.7 : 0.3),
-            ),
-          if (!_showChart || !isLandscape)
-            Container(
-              child: TransacionList(transactions, _deleteTransaction),
-              height: (_mediaQuery.size.height - appBar.preferredSize.height - _mediaQuery.padding.top) * 0.7,
-            ),
-        ],
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Show Chart"),
+                  Switch.adaptive(
+                      value: _showChart,
+                      onChanged: (newVal) {
+                        setState(() {
+                          _showChart = newVal;
+                        });
+                      }),
+                ],
+              ),
+            if (_showChart || !isLandscape)
+              Container(
+                child: Chart(recentTransactions),
+                height: (_mediaQuery.size.height - appBar.preferredSize.height - _mediaQuery.padding.top) * (isLandscape ? 0.7 : 0.3),
+              ),
+            if (!_showChart || !isLandscape)
+              Container(
+                child: TransacionList(transactions, _deleteTransaction),
+                height: (_mediaQuery.size.height - appBar.preferredSize.height - _mediaQuery.padding.top) * 0.7,
+              ),
+          ],
+        ),
       ),
 
     );
