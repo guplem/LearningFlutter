@@ -2,6 +2,7 @@ import "dart:io";
 
 import 'package:expenses_app/Widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 import 'Models/transaction.dart';
@@ -90,14 +91,14 @@ class _MyHomePageState extends State<MyHomePage> {
     var _mediaQuery = MediaQuery.of(context);
     final bool isLandscape = _mediaQuery.orientation == Orientation.landscape;
 
-    final appBar = AppBar(
-      title: const Text("Simple Transactions App"),
-      actions: [IconButton(onPressed: () => StartAddNewTransaction(context), icon: Icon(Icons.add))],
+    final PreferredSizeWidget appBar = CupertinoNavigationBar(
+      middle: const Text("Simple Transactions App"),
+      trailing: CupertinoButton(padding: EdgeInsets.all(0.0), onPressed: () => StartAddNewTransaction(context), child: Icon(CupertinoIcons.add)),
     );
 
-    return Scaffold(
-      appBar: appBar,
-      body: Column(
+    return CupertinoPageScaffold(
+      navigationBar: appBar as ObstructingPreferredSizeWidget,
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           if (isLandscape)
@@ -126,12 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton:
-        Platform.isIOS ?
-          Container() 
-        :
-          FloatingActionButton(onPressed: () => StartAddNewTransaction(context), child: Icon(Icons.add)),
+
     );
   }
 
