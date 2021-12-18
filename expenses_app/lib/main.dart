@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // To create a floating window with a widget
   void StartAddNewTransaction(BuildContext context) {
-    showModalBottomSheet(
+    showCupertinoModalPopup(
         context: context,
         builder: (builderContext) {
           return NewTransaction(_addNewTransaction);
@@ -98,35 +98,37 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return CupertinoPageScaffold(
       navigationBar: appBar as ObstructingPreferredSizeWidget,
-      child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            if (isLandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Show Chart"),
-                  Switch.adaptive(
-                      value: _showChart,
-                      onChanged: (newVal) {
-                        setState(() {
-                          _showChart = newVal;
-                        });
-                      }),
-                ],
-              ),
-            if (_showChart || !isLandscape)
-              Container(
-                child: Chart(recentTransactions),
-                height: (_mediaQuery.size.height - appBar.preferredSize.height - _mediaQuery.padding.top) * (isLandscape ? 0.7 : 0.3),
-              ),
-            if (!_showChart || !isLandscape)
-              Container(
-                child: TransacionList(transactions, _deleteTransaction),
-                height: (_mediaQuery.size.height - appBar.preferredSize.height - _mediaQuery.padding.top) * 0.7,
-              ),
-          ],
+      child: Material( // Needed to show
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              if (isLandscape)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Show Chart", style: Theme.of(context).textTheme.headline6,),
+                    Switch.adaptive(
+                        value: _showChart,
+                        onChanged: (newVal) {
+                          setState(() {
+                            _showChart = newVal;
+                          });
+                        }),
+                  ],
+                ),
+              if (_showChart || !isLandscape)
+                Container(
+                  child: Chart(recentTransactions),
+                  height: (_mediaQuery.size.height - appBar.preferredSize.height - _mediaQuery.padding.top) * (isLandscape ? 0.7 : 0.3),
+                ),
+              if (!_showChart || !isLandscape)
+                Container(
+                  child: TransacionList(transactions, _deleteTransaction),
+                  height: (_mediaQuery.size.height - appBar.preferredSize.height - _mediaQuery.padding.top) * 0.7,
+                ),
+            ],
+          ),
         ),
       ),
 

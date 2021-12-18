@@ -16,7 +16,7 @@ class TransacionList extends StatelessWidget {
         // ListView MUST be in a widget that defines the height (like the container)
         child: transactions.isEmpty
             ? Column(children: [
-                Container(height: constraints.maxHeight*0.15, child: Center(child: const Text("No transactions added yet",textAlign: TextAlign.center,))),
+                Container(height: constraints.maxHeight*0.15, child: Center(child: Text("No transactions added yet",textAlign: TextAlign.center,))),
 
                 Container(
                     height: constraints.maxHeight*0.7,

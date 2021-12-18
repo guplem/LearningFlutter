@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:intl/intl.dart";
 
@@ -44,12 +45,12 @@ class _NewTransactionState extends State<NewTransaction> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              TextField(
+              TextField( // CupertinoTextField can be used. It uses a placeholder instead of decoration
                 decoration: InputDecoration(labelText: "Title"),
                 controller: _titleController,
                 onSubmitted: (_) => _SubmitData(),
               ),
-              TextField(
+              TextField( // CupertinoTextField can be used. It uses a placeholder instead of decoration
                 decoration: InputDecoration(labelText: "Amount"),
                 controller: _amountController,
                 keyboardType: TextInputType.number,
@@ -60,7 +61,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 child: Row(
                   children: [
                     Expanded(child: Text(_selectedDate == null ? "No Date Chosen" : "Picked Date:" + DateFormat.yMd().format(_selectedDate!))),
-                    TextButton(
+                    CupertinoButton(
                       onPressed: _presentDatePicker,
                       child: const Text(
                         "ChooseDate",
@@ -69,7 +70,7 @@ class _NewTransactionState extends State<NewTransaction> {
                   ],
                 ),
               ),
-              ElevatedButton(onPressed: _SubmitData, child: Text("Add Transaction"))
+              CupertinoButton(color: Theme.of(context).colorScheme.primary,onPressed: _SubmitData, child: Text("Add Transaction"))
             ],
           ),
         ),
