@@ -22,26 +22,27 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      localizationsDelegates: const [ // To be able to use MaterialWidgets in CupertinoApp
-        DefaultMaterialLocalizations.delegate,
-        DefaultCupertinoLocalizations.delegate,
-        DefaultWidgetsLocalizations.delegate,
-      ],
+    return MaterialApp(
       title: 'Personal Expenses',
-      theme: const CupertinoThemeData(
-        primaryColor: Colors.green,
-        primaryContrastingColor: Colors.brown,
-        textTheme: CupertinoTextThemeData(
-            textStyle: TextStyle(
-              fontFamily: "Quicksand",
-            ),
-            navLargeTitleTextStyle : TextStyle(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green).copyWith(secondary: Colors.brown),
+        fontFamily: "Quicksand", // General text
+        textTheme: const TextTheme(
+            headline6: TextStyle(
+              // Style for headline 6 (old Title): https://stackoverflow.com/a/60864190/7927429
               fontFamily: "OpenSans",
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),
-            actionTextStyle: TextStyle(fontWeight: FontWeight.bold)),
+            button: TextStyle(fontWeight: FontWeight.bold)),
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            // Title text in app bar
+            fontFamily: "OpenSans",
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       home: MyHomePage(),
     );
@@ -78,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // To create a floating window with a widget
   void StartAddNewTransaction(BuildContext context) {
-    showCupertinoModalPopup(
+    showModalBottomSheet(
         context: context,
         builder: (builderContext) {
           return NewTransaction(_addNewTransaction);
