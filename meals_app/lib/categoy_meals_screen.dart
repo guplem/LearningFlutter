@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class CategoryMealsSecreen extends StatelessWidget {
+import './dummy_data.dart';
 
+class CategoryMealsSecreen extends StatelessWidget {
   final String categoryId;
   final String categoryTitle;
 
@@ -9,12 +10,17 @@ class CategoryMealsSecreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categoryMeals = DUMMY_MEALS.where((meal) => meal.categories.contains(categoryId)).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryTitle),
       ),
-      body: Center(
-        child: Text("CATEGOTY CONTENT"),
+      body: ListView.builder(
+        itemCount: categoryMeals.length,
+        itemBuilder: (ctx, index) {
+          return Text((categoryMeals[index].title));
+        },
       ),
     );
   }
