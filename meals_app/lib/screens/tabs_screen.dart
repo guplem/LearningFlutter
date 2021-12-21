@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/categories_screen.dart';
+import 'package:meals_app/screens/drawer_screen.dart';
 import 'package:meals_app/screens/favorites_screen.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -40,6 +41,7 @@ class _TabsScreenState extends State<TabsScreen> {
         type: BottomNavigationBarType.shifting, // BottomNavigationBarType.fixed --> Default mode, no switching colors neither disabling labels
       ),
       body: _pages[_selectedPageIndex]["page"] as Widget,
+      drawer: DrawerScreen(),
     );
   }
 
