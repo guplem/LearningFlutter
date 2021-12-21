@@ -10,26 +10,42 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  int _selectedPageIndex = 0;
+
+  final List<Map<String, Object>> _pages = [
+    {
+      "page": CategoriesScreen(),
+      "appBarTitle": "Categories",
+    },
+    {
+      "page": FavoritesScreen(),
+      "appBarTitle": "Favorites",
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2 /*number fo tabs*/,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Meals"),
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.category), text: "Categories"),
-              Tab(icon: Icon(Icons.star), text: "Favorites"),
-            ],
-          ),
-        ),
-        body: const TabBarView(children: [
-          CategoriesScreen(),
-          FavoritesScreen()
-        ],),
+    return Scaffold(
+      appBar: AppBar(title: Text(_pages[_selectedPageIndex]["appBarTitle"] as String)),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _selectPage,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.category), label: "Categories", backgroundColor: Theme.of(context).colorScheme.primary),
+          BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favorites", backgroundColor: Colors.orangeAccent),
+        ],
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        selectedItemColor: Colors.white,
+        currentIndex: _selectedPageIndex,
+        // You must tell the tab bar which tab is selected so it visually updates
+        type: BottomNavigationBarType.shifting, // BottomNavigationBarType.fixed --> Default mode, no switching colors neither disabling labels
       ),
-
+      body: _pages[_selectedPageIndex]["page"] as Widget,
     );
+  }
+
+  _selectPage(int index) {
+    setState(() {
+      _selectedPageIndex = index;
+    });
   }
 }
