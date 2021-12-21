@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './dummy_data.dart';
+import '../dummy_data.dart';
 
 class CategoryMealsSecreen extends StatelessWidget {
   final String categoryId;
