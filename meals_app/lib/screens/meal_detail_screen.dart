@@ -60,6 +60,14 @@ class MealDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed: () {
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop(meal.id); // Removing the page from the stack while sharing the meal.id
+          }
+        },
+      ),
     );
   }
 
