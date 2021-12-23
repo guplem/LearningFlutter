@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/models/UserSettings.dart';
 import 'package:meals_app/models/meal.dart';
 
-class MealDetailScreen extends StatelessWidget {
+class MealDetailScreen extends StatefulWidget {
   const MealDetailScreen({Key? key, required this.meal}) : super(key: key);
 
   final Meal meal;
 
   @override
+  State<MealDetailScreen> createState() => _MealDetailScreenState();
+}
+
+class _MealDetailScreenState extends State<MealDetailScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(meal.title),
+        title: Text(widget.meal.title),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -19,7 +25,7 @@ class MealDetailScreen extends StatelessWidget {
               height: 300,
               width: double.infinity,
               child: Image.network(
-                meal.imageUrl,
+                widget.meal.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -27,12 +33,12 @@ class MealDetailScreen extends StatelessWidget {
             BuildSectionContainer(
               context,
               ListView.builder(
-                itemCount: meal.ingredients.length,
+                itemCount: widget.meal.ingredients.length,
                 itemBuilder: (ctx, index) => Card(
                   color: Theme.of(context).colorScheme.secondary,
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    child: Text(meal.ingredients[index]),
+                    child: Text(widget.meal.ingredients[index]),
                   ),
                 ),
               ),
@@ -41,7 +47,7 @@ class MealDetailScreen extends StatelessWidget {
             BuildSectionContainer(
               context,
               ListView.builder(
-                itemCount: meal.steps.length,
+                itemCount: widget.meal.steps.length,
                 itemBuilder: (ctx, index) => Column(
                   children: [
                     ListTile(
@@ -50,9 +56,9 @@ class MealDetailScreen extends StatelessWidget {
                           "# ${index + 1}",
                         ),
                       ),
-                      title: Text(meal.steps[index]),
+                      title: Text(widget.meal.steps[index]),
                     ),
-                    if (index < meal.steps.length - 1) Divider(),
+                    if (index < widget.meal.steps.length - 1) Divider(),
                   ],
                 ),
               ),
@@ -61,12 +67,8 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () {
-          if (Navigator.of(context).canPop()) {
-            Navigator.of(context).pop(meal.id); // Removing the page from the stack while sharing the meal.id
-          }
-        },
+        child: Icon(UserSettings.instance.favorites.contains(widget.meal.id) ? Icons.star : Icons.star_border),
+        onPressed: () => setState(() => UserSettings.instance.ToggleFavorite(widget.meal.id)),
       ),
     );
   }
