@@ -3,21 +3,16 @@ import 'package:meals_app/Models/meal.dart';
 import 'package:meals_app/screens/meal_detail_screen.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({Key? key, required this.meal, required this.removeMeal }) : super(key: key);
+  const MealItem({Key? key, required this.meal}) : super(key: key);
 
   final Meal meal;
-  final Function(String mealId) removeMeal;
 
   selectMeal(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(
       builder: (_) {
         return MealDetailScreen(meal: meal);
       },
-    )).then((value) {
-      if (value != null) {
-        removeMeal(value);
-      }
-    });
+    ));
   }
 
   @override

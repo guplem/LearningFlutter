@@ -51,16 +51,11 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
       body: ListView.builder(
         itemCount: displayedMeals.length,
         itemBuilder: (ctx, index) {
-          return MealItem(meal: displayedMeals[index], removeMeal: _removeMeal,);
+          return MealItem(meal: displayedMeals[index]);
         },
       ),
     );
   }
 
-  void _removeMeal(String mealId) {
-    setState(() {
-      displayedMeals.removeWhere((meal) => meal.id == mealId);
-    });
-  }
 
 }
