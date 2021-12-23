@@ -75,7 +75,6 @@ class MealItem extends StatelessWidget {
                       Text("${meal.duration}")
                     ],
                   ),
-
                   Row(
                     children: [
                       Icon(Icons.work),
@@ -83,7 +82,6 @@ class MealItem extends StatelessWidget {
                       Text("${meal.complexity.toString().split('.').last}")
                     ],
                   ),
-
                   Row(
                     children: [
                       Icon(Icons.attach_money),

@@ -52,7 +52,7 @@ class MealDetailScreen extends StatelessWidget {
                       ),
                       title: Text(meal.steps[index]),
                     ),
-                    if (index < meal.steps.length-1) Divider(),
+                    if (index < meal.steps.length - 1) Divider(),
                   ],
                 ),
               ),

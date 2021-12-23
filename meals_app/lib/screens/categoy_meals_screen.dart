@@ -4,7 +4,7 @@ import 'package:meals_app/widgets/meal_item.dart';
 
 import '../dummy_data.dart';
 
-class CategoryMealsSecreen extends StatelessWidget {
+class CategoryMealsScreen extends StatefulWidget {
   final String categoryId;
   final String categoryTitle;
 
