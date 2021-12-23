@@ -4,15 +4,6 @@ class UserSettings {
 
   final filters = Filters();
 
-  final List<String> favorites = <String>[];
-
-  ToggleFavorite(String id) {
-    if (favorites.contains(id))
-      favorites.remove(id);
-    else
-      favorites.add(id);
-  }
-
 }
 
 class Filters {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/UserSettings.dart';
 import 'package:meals_app/models/meal.dart';
+import 'package:meals_app/providers/favorites.dart';
+import 'package:provider/provider.dart';
 
 class MealDetailScreen extends StatefulWidget {
   const MealDetailScreen({Key? key, required this.meal}) : super(key: key);
@@ -67,8 +69,10 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(UserSettings.instance.favorites.contains(widget.meal.id) ? Icons.star : Icons.star_border),
-        onPressed: () => setState(() => UserSettings.instance.ToggleFavorite(widget.meal.id)),
+        // Calls "context.watch" to make this rebuild when the provider changes.
+        child: Icon(context.watch<Favorites>().favorites.contains(widget.meal.id) ? Icons.star : Icons.star_border),
+        // Calls "context.read" instead of "context.watch" so that it does not rebuild when it is updated
+        onPressed: () => setState(() => context.read<Favorites>().toggleFavorite(widget.meal.id)),
       ),
     );
   }
