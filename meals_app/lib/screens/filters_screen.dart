@@ -18,7 +18,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Text("Adjust your meal selection", style: Theme.of(context).textTheme.headline6,),
           ),
           const Divider(),
